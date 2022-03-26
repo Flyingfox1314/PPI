@@ -3,6 +3,7 @@
 #' @param name Set of genes named ENTREZID
 #' @return PPI network data
 #' @keywords Protein Protein interaction
+#' @export
 
 
 

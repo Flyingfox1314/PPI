@@ -5,6 +5,7 @@
 #' @keywords Protein Protein interaction Hub gene
 #' @importFrom igraph graph_from_data_frame as_ids V diameter vcount distances neighbors components gsize
 #' @importFrom utils head
+#' @export
 
 
 
