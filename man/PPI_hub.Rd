@@ -10,13 +10,12 @@ PPI_hub(PPI_data_symbol)
 \item{PPI_data_symbol}{A set of interaction data}
 }
 \value{
-data_mysuanfa (The result of hub gene found by the algorithm)
+The result of hub gene found by the algorithm
 }
 \description{
 Using algorithm to calculate Hub gene
 }
 \keyword{Hub}
-\keyword{PPI(Protein}
 \keyword{Protein}
-\keyword{gene)}
+\keyword{gene}
 \keyword{interaction}

@@ -7,14 +7,13 @@
 PPI_data(name)
 }
 \arguments{
-\item{name}{Set of genes named ENTREZID (preferably in the format of interger)}
+\item{name}{Set of genes named ENTREZID}
 }
 \value{
-net (PPI network data)
+PPI network data
 }
 \description{
 Building PPI network data
 }
-\keyword{PPI(Protein}
 \keyword{Protein}
-\keyword{interaction)}
+\keyword{interaction}

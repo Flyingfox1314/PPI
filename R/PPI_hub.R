@@ -1,8 +1,8 @@
 #' Using algorithm to calculate Hub gene
 #'
 #' @param PPI_data_symbol A set of interaction data
-#' @return data_mysuanfa (The result of hub gene found by the algorithm)
-#' @keywords PPI(Protein Protein interaction Hub gene)
+#' @return The result of hub gene found by the algorithm
+#' @keywords Protein Protein interaction Hub gene
 #' @importFrom igraph graph_from_data_frame as_ids V diameter vcount distances neighbors components gsize
 #' @importFrom utils head
 
@@ -10,20 +10,20 @@
 
 PPI_hub = function(PPI_data_symbol){
   # 得到互作网络
-  net = graph_from_data_frame(PPI_data_symbol, directed = FALSE)
+  net = igraph::graph_from_data_frame(PPI_data_symbol, directed = FALSE)
 
-  node = as_ids(V(net))   # 将节点转化为字符串的格式
-  diam = diameter(net)    # 计算图的直径
+  node = igraph::as_ids(igraph::V(net))   # 将节点转化为字符串的格式
+  diam = igraph::diameter(net)    # 计算图的直径
   result = node
   result =as.data.frame(result)   # result用来存放算法结果的临时数据
 
   ## Radiality 径向度算法 ******************************************************************************************
   {
-    n = vcount(net)
+    n = igraph::vcount(net)
     result$Radiality = NA
 
     for (y in 1:length(node)) {
-      distance =distances(net, node[y], to = V(net))
+      distance =igraph::distances(net, node[y], to = V(net))
       sum = 0
 
       for (x in 1:length(distance)) {
@@ -56,7 +56,7 @@ PPI_hub = function(PPI_data_symbol){
     n = length(node)
 
     for (x in 1:n) {
-      neighbor_node = neighbors(net, node[x])    ## 指定节点的邻居节点
+      neighbor_node = igraph::neighbors(net, node[x])    ## 指定节点的邻居节点
       neighbor_node = as_ids(neighbor_node)
       # 第2小步：将当前节点A和他的邻居节点构成限定子图
       # 将不在邻居节点中的节点帅选出来
@@ -75,12 +75,12 @@ PPI_hub = function(PPI_data_symbol){
       #  plot(net_tmp)
 
       ## 第三步：找出最大连通分支，并计算其中的点数
-      components(net_tmp)
+      igraph::components(net_tmp)
 
-      result[x,3] = max(components(net_tmp)$csize)
+      result[x,3] = max(igraph::components(net_tmp)$csize)
 
       side = gsize(net_tmp)
-      result[x,4] = side / max(components(net_tmp)$csize)
+      result[x,4] = side / max(igraph::components(net_tmp)$csize)
 
     }
 
@@ -97,7 +97,7 @@ PPI_hub = function(PPI_data_symbol){
 
   ## ClusteringCoefficient 集聚系数算法 ******************************************************************************************
   {
-    n = vcount(net)  # 获取节点数
+    n = igraph::vcount(net)  # 获取节点数
     N = n * (n-1)
     N   # 这些节点之间可能存在的边数
     result$CCT = NA

@@ -3,5 +3,7 @@
 \docType{package}
 \name{PPI}
 \alias{PPI}
-\title{Protein-Protein Interaction
-This package is used to construct protein-protein interaction network, and build-in 4 algorithms to calculate Hub gene and provide gene ID conversion}
+\title{Protein-Protein Interaction}
+\description{
+This package is used to construct protein-protein interaction network, and build-in 4 algorithms to calculate Hub gene and provide gene ID conversion
+}

@@ -1,8 +1,8 @@
 #' Building PPI network data
 #'
-#' @param name Set of genes named ENTREZID (preferably in the format of interger)
-#' @return net (PPI network data)
-#' @keywords PPI(Protein Protein interaction)
+#' @param name Set of genes named ENTREZID
+#' @return PPI network data
+#' @keywords Protein Protein interaction
 
 
 
@@ -63,7 +63,7 @@ PPI_data = function(name){
   if (length(name[!name %in% c]) != 0) {
     options(warn = 1)
   }
-  warning(paste('以下',length(name[!name %in% c]),'个关键基因的互作数据只有一条，因此被去除:', name[!name %in% c]))
+  warning(paste('These key genes have only one interaction data, so they are removed:', name[!name %in% c]))
 
   net = tmp
   return(net)
