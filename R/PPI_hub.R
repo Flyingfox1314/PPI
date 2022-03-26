@@ -3,7 +3,7 @@
 #' @param PPI_data_symbol A set of interaction data
 #' @return The result of hub gene found by the algorithm
 #' @keywords Protein Protein interaction Hub gene
-#' @importFrom igraph graph_from_data_frame as_ids V diameter vcount distances neighbors components gsize
+#' @importFrom igraph graph_from_data_frame as_ids V diameter vcount distances neighbors components gsize degree betweenness closeness evcent eccentricity
 #' @importFrom utils head
 #' @export
 
@@ -114,7 +114,49 @@ PPI_hub = function(PPI_data_symbol){
   }
 
 
-  data = cbind(data_ClusteringCoefficient, data_DMNC, data_MNC, data_Radiality)
+  # degree 点度中心度算法 ********************************************************************************************
+  {
+    igraph::V(net)$deg = igraph::degree(net, mode = 'all')
+    data_deg = head(igraph::V(net)[order(igraph::V(net)$deg, decreasing = T)], n = 10)
+    data_deg = as_ids(data_deg)
+  }
+
+  ## Betweenness 中间中心度算法  ***************************************************************************************
+  {
+    igraph::V(net)$bte = igraph::betweenness(net, directed = F)
+    data_bte =  head(igraph::V(net)[order(igraph::V(net)$bte, decreasing = T)], n = 10)
+    data_bte = as_ids(data_bte)
+  }
+
+
+  ## closeness 接近中心度算法 ******************************************************************************************
+  {
+
+    igraph::V(net)$clo = igraph::closeness(net, mode = 'in')    # in为无向图
+
+    data_clo = head(igraph::V(net)[order(igraph::V(net)$clo, decreasing = T)], n = 10)
+    data_clo = as_ids(data_clo)
+  }
+
+  ## Eigenvector centrality 特征向量中心度算法 ******************************************************************************************
+  {
+    igraph::V(net)$EC = igraph::evcent(net, scale = F)$vector
+    data_EC = head(igraph::V(net)[order(igraph::V(net)$EC, decreasing = T)], n = 10)
+    data_EC = as_ids(data_EC)
+  }
+
+  ## Eccentricity算法 偏心率中心度算法 ******************************************************************************************
+  {
+    igraph::V(net)$Eccentricity = igraph::eccentricity(net)
+    data_Eccentricity = head(igraph::V(net)[order(igraph::V(net)$Eccentricity, decreasing = T)], n = 10)
+    data_Eccentricity = as_ids(data_Eccentricity)
+  }
+
+
+
+
+  data = cbind(data_Radiality, data_MNC, data_DMNC, data_ClusteringCoefficient,
+               data_deg, data_bte, data_clo, data_EC, data_Eccentricity)
   return(data)
 }
 
