@@ -1,0 +1,17 @@
+Package: PPI
+Type: Package
+Title: Building PPI network data
+Version: 1.0.5
+Date: 2022-03-24
+Author: person('Jinjiang Fan', email = '1372679708@qq.com', role = 'aut')
+Maintainer: Fjj<137267908@qq.com>
+Description: This function is used to build PPI network data
+    The parameter name is 'ENTREZID' and the format is "integer" .It returns the build PPI net work.
+License: GPL-2
+Encoding: UTF-8
+LazyData: true
+Imports: 
+    igraph
+Depends: 
+    R (>= 2.10)
+RoxygenNote: 7.1.2
