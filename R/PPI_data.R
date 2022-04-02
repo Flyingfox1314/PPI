@@ -64,7 +64,7 @@ PPI_data = function(name){
   if (length(name[!name %in% c]) != 0) {
     options(warn = 1)
   }
-  warning(paste('These key genes have only one interaction data, so they are removed:', name[!name %in% c]))
+  warning(paste('These key genes have only one interaction data, so they are removed:', name[!name %in% c], '\n'))
 
   net = tmp
   return(net)
