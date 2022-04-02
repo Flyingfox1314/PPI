@@ -2,6 +2,7 @@
 
 export(PPI_data)
 export(PPI_hub)
+export(getGEO_url)
 importFrom(igraph,V)
 importFrom(igraph,as_ids)
 importFrom(igraph,betweenness)

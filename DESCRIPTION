@@ -1,12 +1,14 @@
 Package: PPI
 Type: Package
-Title: Building PPI network data
-Version: 1.0.5
-Date: 2022-03-24
+Title: Building PPI network data and Gene transformation
+Version: 1.0.6
+Date: 2022-03-29
 Author: person('Jinjiang Fan', email = '1372679708@qq.com', role = 'aut')
 Maintainer: Fjj<137267908@qq.com>
-Description: This function is used to build PPI network data
-    The parameter name is 'ENTREZID' and the format is "integer" .It returns the build PPI net work.
+Description: This R package contains four functions,
+     PPI_data() For constructing protein-protein interaction networks.
+     PPI_hub() Nine algorithms are used to calculate the key node genes of protein-protein interaction network.
+     gerGEO_url() bio-info-trainee team downloads the data of GEO database to the domestic server. This function is the address corresponding to the output data.
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
