@@ -49,7 +49,10 @@ PPI_data = function(name){
   for (x in 1:length(quchu$c)) {
     hanghao = which(tmp == quchu$c[x], arr.ind = T)
 
-    tmp = tmp[-hanghao[1],]
+    if (dim(hanghao)[1] != 0) {
+      tmp = tmp[-hanghao[1],]
+    }
+
   }
 
 
